@@ -134,10 +134,12 @@ public class DumpCommand {
                 List<String> list = map.get(namespace);
                 sb.append(list.stream().map(name -> "\"" + name + "\"").toList()).append(",");
             }
-            sb.deleteCharAt(sb.length() - 1);
+            if (!map.isEmpty())
+                sb.deleteCharAt(sb.length() - 1);
             sb.append("},");
         }
-        sb.deleteCharAt(sb.length() - 1);
+        if (!res.isEmpty())
+            sb.deleteCharAt(sb.length() - 1);
         return sb.append("}").toString();
     }
 
@@ -165,7 +167,10 @@ public class DumpCommand {
         // write the map
         for (String name : aliasMap.keySet())
             sb.append(aliasMap.get(name)).append(":\"").append(name).append("\",\n");
-        sb.deleteCharAt(sb.length() - 2).append("\n");
+        if (!aliasMap.isEmpty()) {
+            sb.deleteCharAt(sb.length() - 2);
+            sb.append("\n");
+        }
         // write the array
         for (int x = 0; x < box.getXSpan(); x++) {
             sb.append("[");
