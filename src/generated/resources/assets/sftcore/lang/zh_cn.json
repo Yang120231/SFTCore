@@ -1,0 +1,16 @@
+{
+  "block.sftcore.certus_quartz_charger": "晶石充能器",
+  "block.sftcore.common_mekanism_process_factory": "通用机械集成工厂",
+  "block.sftcore.desulfurizer": "脱硫器",
+  "block.sftcore.fishbig_maker": "鱼大制造机",
+  "block.sftcore.greenhouse": "电动温室",
+  "block.sftcore.hurry_up": "急急国王",
+  "block.sftcore.large_inscriber": "大型铭刻机",
+  "block.sftcore.large_mekanism_nuclear_reactor": "大型通用机械核反应堆",
+  "block.sftcore.multi_functional_casing": "多功能外壳",
+  "block.sftcore.oil_drilling_rig": "石油钻机",
+  "block.sftcore.semiconductor_blast_furnace": "半导体锻炉",
+  "itemGroup.sftcore.block": "SFTCore | 方块",
+  "itemGroup.sftcore.item": "SFTCore | 物品",
+  "itemGroup.sftcore.machine": "SFTCore | 机器"
+}
