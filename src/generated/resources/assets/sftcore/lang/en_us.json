@@ -1,0 +1,16 @@
+{
+  "block.sftcore.certus_quartz_charger": "Certus Quartz Charger",
+  "block.sftcore.common_mekanism_process_factory": "Common Mekanism Process Factory",
+  "block.sftcore.desulfurizer": "Desulfurizer",
+  "block.sftcore.fishbig_maker": "Fishbig Maker",
+  "block.sftcore.greenhouse": "Greenhouse",
+  "block.sftcore.hurry_up": "Hurry Up",
+  "block.sftcore.large_inscriber": "Large Inscriber",
+  "block.sftcore.large_mekanism_nuclear_reactor": "Large Mekanism Nuclear Reactor",
+  "block.sftcore.multi_functional_casing": "Multi Functional Casing",
+  "block.sftcore.oil_drilling_rig": "Oil Drilling Rig",
+  "block.sftcore.semiconductor_blast_furnace": "Semiconductor Blast Furnace",
+  "itemGroup.sftcore.block": "SFTCore | Block",
+  "itemGroup.sftcore.item": "SFTCore | Item",
+  "itemGroup.sftcore.machine": "SFTCore | Machine"
+}
