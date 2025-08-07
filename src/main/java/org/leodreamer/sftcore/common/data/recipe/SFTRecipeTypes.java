@@ -1,21 +1,27 @@
-package org.leodreamer.sftcore.common.data.recipes;
+package org.leodreamer.sftcore.common.data.recipe;
 
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.block.ICoilType;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
+import com.gregtechceu.gtceu.api.recipe.GTRecipeSerializer;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
+import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.common.data.GTSoundEntries;
 import com.lowdragmc.lowdraglib.gui.texture.ProgressTexture;
 import com.lowdragmc.lowdraglib.gui.widget.SlotWidget;
 import com.lowdragmc.lowdraglib.utils.CycleItemStackHandler;
 import com.lowdragmc.lowdraglib.utils.LocalizationUtils;
 import net.minecraft.client.resources.language.I18n;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeType;
+import org.leodreamer.sftcore.SFTCore;
 
 import java.util.List;
 
-import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.GENERATOR;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.MULTIBLOCK;
 
 public final class SFTRecipeTypes {
     public static void init() {
@@ -51,7 +57,7 @@ public final class SFTRecipeTypes {
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.MIXER);
 
-    // GT recipes
+    // GT recipe
     public static final GTRecipeType GREENHOUSE_RECIPES = register("greenhouse", MULTIBLOCK)
             .setEUIO(IO.IN)
             .setMaxIOSize(3, 4, 1, 0)
@@ -104,4 +110,12 @@ public final class SFTRecipeTypes {
                     })
             )
             .setSound(GTSoundEntries.FURNACE);
+
+    public static GTRecipeType register(String name, String group, RecipeType<?>... proxyRecipes) {
+        var recipeType = new GTRecipeType(SFTCore.id(name), group, proxyRecipes);
+        GTRegistries.register(BuiltInRegistries.RECIPE_TYPE, recipeType.registryName, recipeType);
+        GTRegistries.register(BuiltInRegistries.RECIPE_SERIALIZER, recipeType.registryName, new GTRecipeSerializer());
+        GTRegistries.RECIPE_TYPES.register(recipeType.registryName, recipeType);
+        return recipeType;
+    }
 }

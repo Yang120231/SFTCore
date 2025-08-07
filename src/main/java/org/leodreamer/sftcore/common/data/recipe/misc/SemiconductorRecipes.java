@@ -1,8 +1,8 @@
-package org.leodreamer.sftcore.common.data.recipes.misc;
+package org.leodreamer.sftcore.common.data.recipe.misc;
 
 import net.minecraft.data.recipes.FinishedRecipe;
 import org.leodreamer.sftcore.SFTCore;
-import org.leodreamer.sftcore.common.data.recipes.SFTRecipeTypes;
+import org.leodreamer.sftcore.common.data.recipe.SFTRecipeTypes;
 
 import java.util.function.Consumer;
 

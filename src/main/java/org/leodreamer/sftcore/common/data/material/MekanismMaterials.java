@@ -1,4 +1,4 @@
-package org.leodreamer.sftcore.common.data.meterials;
+package org.leodreamer.sftcore.common.data.material;
 
 
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;

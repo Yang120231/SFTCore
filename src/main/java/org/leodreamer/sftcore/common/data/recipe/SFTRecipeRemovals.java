@@ -1,4 +1,11 @@
 package org.leodreamer.sftcore.common.data.recipe;
 
-public class SFTRecipeRemovals {
+import net.minecraft.resources.ResourceLocation;
+
+import java.util.function.Consumer;
+
+public final class SFTRecipeRemovals {
+    public static void init(Consumer<ResourceLocation> registry) {
+        // TODO
+    }
 }

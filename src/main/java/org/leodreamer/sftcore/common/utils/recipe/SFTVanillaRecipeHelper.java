@@ -1,29 +1,29 @@
 package org.leodreamer.sftcore.common.utils.recipe;
 
+import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialEntry;
+import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ItemLike;
 import org.leodreamer.sftcore.SFTCore;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Consumer;
 
-public class SGTVanillaRecipeHelper {
+public class SFTVanillaRecipeHelper {
     public static class ShapedRecipeBuilder {
-        Consumer<FinishedRecipe> provider;
-        String id;
-        boolean setMaterialInfoData = true;
-        ItemStack output;
-        ArrayList<Object> recipe = new ArrayList<>();
+        private final ResourceLocation id;
+        private boolean setMaterialInfoData = true;
+        private final ArrayList<Object> recipe = new ArrayList<>();
+        private ItemStack output;
 
-        public ShapedRecipeBuilder(Consumer<FinishedRecipe> provider) {
-            this.provider = provider;
-        }
-
-        public ShapedRecipeBuilder id(String id) {
+        public ShapedRecipeBuilder(ResourceLocation id) {
             this.id = id;
-            return this;
         }
 
         public ShapedRecipeBuilder setMaterialInfoData(boolean setMaterialInfoData) {
@@ -33,28 +33,53 @@ public class SGTVanillaRecipeHelper {
 
         public ShapedRecipeBuilder pattern(String... patterns) {
             if (!recipe.isEmpty()) {
-                SFTCore.LOGGER.warn("Recipe pattern is bad. Previous patterns: {}", recipe);
+                SFTCore.LOGGER.warn("Please define the pattern before adding any arguments to the recipe.");
             }
             recipe.addAll(Arrays.asList(patterns));
             return this;
         }
 
-        public ShapedRecipeBuilder arg(char sign, Object obj) {
+        public ShapedRecipeBuilder arg(char sign, ItemLike item) {
+            return arg(sign, (Object) item);
+        }
+
+        public ShapedRecipeBuilder arg(char sign, MaterialEntry entry) {
+            return arg(sign, (Object) entry);
+        }
+
+        public ShapedRecipeBuilder arg(char sign, TagKey<Item> tag) {
+            return arg(sign, (Object) tag);
+        }
+
+        public ShapedRecipeBuilder arg(char sign, MachineDefinition machine) {
+            return arg(sign, machine.asStack());
+        }
+
+        public ShapedRecipeBuilder arg(char sign, ItemStack stack) {
+            return arg(sign, (Object) stack);
+        }
+
+        private ShapedRecipeBuilder arg(char sign, Object obj) {
             recipe.add(sign);
             recipe.add(obj);
             return this;
         }
 
-        public void outputAndFinish(ItemStack output) {
+        public ShapedRecipeBuilder output(ItemStack output) {
             this.output = output;
+            return this;
+        }
+
+        public void save(Consumer<FinishedRecipe> provider) {
             if (id == null) {
                 SFTCore.LOGGER.warn("Recipe ID is not set for {}", output);
+                return;
             }
-            VanillaRecipeHelper.addShapedRecipe(provider, setMaterialInfoData, SFTCore.id(id), output, recipe.toArray());
+            VanillaRecipeHelper.addShapedRecipe(provider, setMaterialInfoData, id, output, recipe.toArray());
         }
     }
 
-    public static ShapedRecipeBuilder addShapedRecipe(Consumer<FinishedRecipe> provider, String id) {
-        return new ShapedRecipeBuilder(provider).id(id);
+    public static ShapedRecipeBuilder addShapedRecipe(String id) {
+        return new ShapedRecipeBuilder(SFTCore.id(id));
     }
 }

@@ -13,12 +13,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.leodreamer.sftcore.common.data.SFTBlocks;
-import org.leodreamer.sftcore.common.data.SFTCreativeTabs;
-import org.leodreamer.sftcore.common.data.SFTItems;
-import org.leodreamer.sftcore.common.data.SFTMaterials;
-import org.leodreamer.sftcore.common.data.machine.SFTMultiMachines;
-import org.leodreamer.sftcore.common.data.recipes.SFTRecipeTypes;
+import org.leodreamer.sftcore.common.data.*;
+import org.leodreamer.sftcore.common.data.recipe.SFTRecipeTypes;
 
 
 @Mod(SFTCore.MOD_ID)
@@ -31,6 +27,7 @@ public class SFTCore {
     @SuppressWarnings("removal")
     public SFTCore() {
         SFTCreativeTabs.init();
+        SFTDataGen.init();
         SFTBlocks.init();
         SFTItems.init();
         REGISTRATE.registerRegistrate();
@@ -65,7 +62,7 @@ public class SFTCore {
 
     @SubscribeEvent
     public void registerMachines(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
-        SFTMultiMachines.init();
+        SFTMachines.init();
     }
 
     @SubscribeEvent

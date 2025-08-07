@@ -1,7 +1,7 @@
 package org.leodreamer.sftcore.common.data;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
-import org.leodreamer.sftcore.common.data.meterials.MekanismMaterials;
+import org.leodreamer.sftcore.common.data.material.MekanismMaterials;
 
 public final class SFTMaterials {
 
