@@ -50,6 +50,7 @@ public class SFTLangHandler extends LangHandler {
         provider.add("sftcore.machine.modified_by_sft", "§b§n§o- Modified By SFT§r§r§r§b§n -§r§r");
 
         // machines
+        provider.add("sftcore.machine.ore_replicator.tooltip", "Place it under an ore block and it will generate ores.");
         provider.add("sftcore.machine.desulfurizer.tooltip", "Desulfurize oil efficiently.");
         provider.add("sftcore.machine.oil_drilling_rig.tooltip", "Oh, It's not so environmental friendly...");
         provider.add("sftcore.machine.semiconductor_blast_furnace.tooltip", "Expert in producing semiconductor.");

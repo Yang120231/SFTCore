@@ -5,11 +5,11 @@ import com.simibubi.create.AllItems;
 import mekanism.common.registries.MekanismFluids;
 import mekanism.common.registries.MekanismItems;
 import mekanism.generators.common.registries.GeneratorsFluids;
-import net.mcreator.simpleoregenerator.init.SimpleResourceGeneratorsModBlocks;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.Items;
 import org.leodreamer.sftcore.SFTCore;
 import org.leodreamer.sftcore.common.data.SFTItems;
+import org.leodreamer.sftcore.common.data.SFTMachines;
 import org.leodreamer.sftcore.common.data.SFTRecipes;
 
 import java.util.function.Consumer;
@@ -63,7 +63,7 @@ public class CustomGTRecipes {
         }
 
         FISHBIG_MAKER_RECIPES.recipeBuilder(SFTCore.id("ore_generator"))
-                .outputItems(SimpleResourceGeneratorsModBlocks.ADVANCED_ORE_GENERATOR)
+                .outputItems(SFTMachines.ORE_REPLICATOR.asStack())
                 .notConsumable(EPPItemAndBlock.FISHBIG.asItem())
                 .inputItems(MekanismItems.ULTIMATE_CONTROL_CIRCUIT, 4)
                 .inputItems(Items.SMOOTH_STONE)
@@ -73,7 +73,7 @@ public class CustomGTRecipes {
                 .save(provider);
 
         ASSEMBLER_RECIPES.recipeBuilder(SFTCore.id("ore_generator"))
-                .outputItems(SimpleResourceGeneratorsModBlocks.ADVANCED_ORE_GENERATOR)
+                .outputItems(SFTMachines.ORE_REPLICATOR.asStack())
                 .notConsumable(EPPItemAndBlock.FISHBIG.asItem())
                 .inputItems(MekanismItems.ULTIMATE_CONTROL_CIRCUIT, 4)
                 .inputItems(Items.SMOOTH_STONE)

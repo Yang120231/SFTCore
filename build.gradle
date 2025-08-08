@@ -140,7 +140,7 @@ repositories {
     // flatDir {
     //     dir 'libs'
     // }
-
+    mavenCentral()
     maven { // GregTech
         name = 'GTCEu Maven'
         url = 'https://maven.gtceu.com'
@@ -217,22 +217,23 @@ dependencies {
     implementation fg.deobf("org.appliedenergistics:guideme:${guideme_version}")
     implementation fg.deobf("appeng:appliedenergistics2-forge:${ae2_version}")
     implementation fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
-    implementation fg.deobf("curse.maven:ex-pattern-provider-892005:6010405")
-    implementation fg.deobf("curse.maven:simple-sky-resource-generators-948781:5108586")
+    implementation fg.deobf("curse.maven:ex-pattern-provider-892005:6677843")
     implementation fg.deobf("curse.maven:advancedae-1084104:6757852")
     implementation fg.deobf("software.bernie.geckolib:geckolib-forge-${minecraft_version}:${geckolib_version}")
     implementation("com.eliotlash.mclib:mclib:20")
+    implementation 'org.projectlombok:lombok:1.18.30'
 
+    compileOnly 'org.projectlombok:lombok:1.18.30'
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
     compileOnly fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
     compileOnly(fg.deobf("dev.engine-room.flywheel:flywheel-forge-api-${minecraft_version}:${flywheel_version}"))
     compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))
 
-//    runtimeOnly fg.deobf("curse.maven:torcherino-236794:4722725")
     runtimeOnly(fg.deobf("dev.engine-room.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}"))
     runtimeOnly fg.deobf("curse.maven:modern-fix-790626:6837713")
     runtimeOnly fg.deobf("maven.modrinth:jade:${jade_version}")
 
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
 

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "sftcore:block/machine/ore_replicator"
+    }
+  }
+}

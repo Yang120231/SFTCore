@@ -1,4 +1,4 @@
-package org.leodreamer.sftcore.mixin;
+package org.leodreamer.sftcore.mixin.gregtech;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.ParallelHatchPartMachine;

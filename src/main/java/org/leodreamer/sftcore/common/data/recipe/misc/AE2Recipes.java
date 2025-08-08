@@ -6,15 +6,19 @@ import appeng.datagen.providers.tags.ConventionTags;
 import com.glodblock.github.extendedae.common.EPPItemAndBlock;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+import com.simibubi.create.AllBlocks;
 import gripe._90.megacells.definition.MEGABlocks;
 import gripe._90.megacells.definition.MEGAItems;
+import mekanism.common.registries.MekanismItems;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.pedroksl.advanced_ae.common.definitions.AAEBlocks;
 import net.pedroksl.advanced_ae.common.definitions.AAEItems;
 import org.leodreamer.sftcore.SFTCore;
+import org.leodreamer.sftcore.common.data.SFTRecipes;
 import org.leodreamer.sftcore.common.utils.recipe.SFTVanillaRecipeHelper;
 
 import java.util.function.Consumer;
@@ -23,6 +27,7 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTMachines.HULL;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLER_RECIPES;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.MIXER_RECIPES;
 import static org.leodreamer.sftcore.common.data.recipe.SFTRecipeTypes.CERTUS_QUARTZ_CHARGE_RECIPES;
 import static org.leodreamer.sftcore.common.data.recipe.SFTRecipeTypes.LARGE_INSCRIBER;
@@ -88,6 +93,49 @@ public final class AE2Recipes {
         inscribe(provider, "engineering", Items.DIAMOND, AEItems.ENGINEERING_PROCESSOR.asItem());
         inscribe(provider, "accumulation", MEGAItems.SKY_STEEL_INGOT.asItem(), MEGAItems.ACCUMULATION_PROCESSOR.asItem());
         inscribe(provider, "quantum", AAEItems.QUANTUM_ALLOY.asItem(), AAEItems.QUANTUM_PROCESSOR.asItem());
+
+        var sink = SFTRecipes.getItemById("cookingforblockheads", "sink");
+
+        if (sink != null) {
+            var waterCell = getInfinityCell('f', "minecraft:water");
+            ASSEMBLER_RECIPES.recipeBuilder(SFTCore.id("water_cell"))
+                    .outputItems(waterCell)
+                    .inputItems(sink, 4)
+                    .inputItems(AEItems.CELL_COMPONENT_4K.asItem())
+                    .inputItems(AEItems.FLUID_CELL_HOUSING.asItem())
+                    .inputFluids(Glue.getFluid(500))
+                    .duration(40)
+                    .EUt(VA[LV])
+                    .save(provider);
+        }
+
+        var cobblestoneCell = getInfinityCell('i', "minecraft:cobblestone");
+        ASSEMBLER_RECIPES.recipeBuilder(SFTCore.id("cobblestone_cell"))
+                .outputItems(cobblestoneCell)
+                .inputItems(Items.COBBLESTONE, 4)
+                .inputItems(MekanismItems.POLONIUM_PELLET)
+                .inputItems(AEItems.CELL_COMPONENT_16K.asItem())
+                .inputItems(AEItems.ITEM_CELL_HOUSING.asItem())
+                .inputFluids(Glue.getFluid(1000))
+                .duration(80)
+                .EUt(VA[LV])
+                .save(provider);
+
+        var lavaCell = getInfinityCell('f', "minecraft:lava");
+        ASSEMBLER_RECIPES.recipeBuilder(SFTCore.id("lava_cell"))
+                .outputItems(lavaCell)
+                .inputItems(AllBlocks.FLUID_TANK.asItem(), 36)
+                .inputItems(AllBlocks.HOSE_PULLEY.asItem())
+                .inputItems(AllBlocks.LARGE_WATER_WHEEL.asItem(), 2)
+                .inputItems(AEBlocks.QUANTUM_LINK.asItem(), 2)
+                .inputItems(AEBlocks.QUANTUM_RING.asItem(), 16)
+                .inputItems(AEItems.QUANTUM_ENTANGLED_SINGULARITY.asItem(), 2)
+                .inputItems(AEItems.CELL_COMPONENT_64K.asItem())
+                .inputItems(AEItems.FLUID_CELL_HOUSING.asItem())
+                .inputFluids(Glue.getFluid(4000))
+                .duration(80)
+                .EUt(VA[MV])
+                .save(provider);
     }
 
     private static void inscribe(Consumer<FinishedRecipe> provider, String id, Item ingredient, Item processor) {
@@ -99,5 +147,16 @@ public final class AE2Recipes {
                 .duration(100)
                 .EUt(VA[MV])
                 .save(provider);
+    }
+
+    private static ItemStack getInfinityCell(char type, String id) {
+        var cell = new ItemStack(EPPItemAndBlock.INFINITY_CELL);
+        var record = new CompoundTag();
+        record.putString("#c", "ae2:" + type);
+        record.putString("id", id);
+        var nbt = new CompoundTag();
+        nbt.put("record", record);
+        cell.setTag(nbt);
+        return cell;
     }
 }

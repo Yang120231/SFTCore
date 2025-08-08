@@ -14,7 +14,6 @@ import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 import com.simibubi.create.AllBlocks;
-import com.simibubi.create.content.decoration.palettes.AllPaletteBlocks;
 import mekanism.common.registries.MekanismBlocks;
 import mekanism.generators.common.registries.GeneratorsBlocks;
 import net.minecraft.ChatFormatting;
@@ -48,21 +47,18 @@ public final class SFTMultiMachines {
                     FactoryBlockPattern.start()
                             .aisle("AAAAAAA", "ABCCCBA", "ABC CBA", "ABC CBA", "ABCCCBA", "AAAAAAA")
                             .aisle("AAAAAAA", "E     E", "E     E", "E     E", "E     E", "AFFFFFA")
-                            .aisle("AAAAAAA", "G     E", "G     E", "G     E", "G     E", "AFFFFFA")
-                            .aisle("AAAAAAA", "G     E", "G     E", "G     E", "G     E", "AFFHFFA")
-                            .aisle("AAAAAAA", "G     E", "G     E", "G     E", "G     E", "AFFFFFA")
+                            .aisle("AAAAAAA", "E     E", "E     E", "E     E", "E     E", "AFFFFFA")
+                            .aisle("AAAAAAA", "E     E", "E     E", "E     E", "E     E", "AFFHFFA")
+                            .aisle("AAAAAAA", "E     E", "E     E", "E     E", "E     E", "AFFFFFA")
                             .aisle("AAAAAAA", "E     E", "E     E", "E     E", "E     E", "AFFFFFA")
                             .aisle("AAAUAAA", "ABCCCBA", "ABC CBA", "ABC CBA", "ABCCCBA", "AAAAAAA")
                             .where("U", controller(blocks(definition.get())))
                             .where("A", blocks(AllBlocks.RAILWAY_CASING.get())
-                                    .or(autoAbilities(definition.getRecipeTypes()))
-                            )
+                                    .or(autoAbilities(definition.getRecipeTypes())))
                             .where("B", blocks(MekanismBlocks.INDUCTION_CASING.getBlock()))
                             .where("C", blocks(MekanismBlocks.TELEPORTER_FRAME.getBlock()))
-                            .where("E", blocks(Blocks.GRAY_CONCRETE))
-                            .where("F", blocks(GeneratorsBlocks.FUSION_REACTOR_FRAME.getBlock())
-                            )
-                            .where("G", blocks(AllPaletteBlocks.FRAMED_GLASS.get()))
+                            .where("E", blocks(MekanismBlocks.DYNAMIC_TANK.getBlock()))
+                            .where("F", blocks(GeneratorsBlocks.FUSION_REACTOR_FRAME.getBlock()))
                             .where("H", blocks(Blocks.GLOWSTONE))
                             .build())
             .workableCasingModel(SFTCore.id("block/casings/solid/create_railway_casing"),

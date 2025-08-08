@@ -1,4 +1,4 @@
-// 1.20.1	2025-08-06T03:52:36.744432199	Registrate Provider for sftcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
+// 1.20.1	2025-08-08T18:24:06.600121134	Registrate Provider for sftcore [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
 bf246669aaf876441016cacf1449710cfe73f109 assets/sftcore/blockstates/certus_quartz_charger.json
 b6cf69088eb8fb4bdea6d079f74a6ce88c2aa65f assets/sftcore/blockstates/chemical_factory.json
 60a99ee906f6cba9a9d94bd6c3b095f6aab98371 assets/sftcore/blockstates/common_mekanism_process_factory.json
@@ -12,9 +12,10 @@ f752a83d0ac286b8e6c09549d78fb934d322d51f assets/sftcore/blockstates/fishbig_make
 11abc54b92a8f4bf617c401c65d3e96347af7118 assets/sftcore/blockstates/mega_alloy_blast_smelter.json
 9fa0718057b11d544b5fd4b358ff7f099a5d7492 assets/sftcore/blockstates/multi_functional_casing.json
 7936981358786f88f096ca3bde7d0e30de515702 assets/sftcore/blockstates/oil_drilling_rig.json
+874a09e6afd7384bf7538e890de209b8ec25ae23 assets/sftcore/blockstates/ore_replicator.json
 ae0b283ec0b46996a81b55c816395cbe93265cc5 assets/sftcore/blockstates/semiconductor_blast_furnace.json
-dccbf7c82aa01fbd0c22f15aa0ece1efb3d8b8b8 assets/sftcore/lang/en_ud.json
-82f5c5246f466184be45bf346e15ac90de6c312e assets/sftcore/lang/en_us.json
+5806e677cc5a694f6eedbd135e4895b46a5c7618 assets/sftcore/lang/en_ud.json
+f9ad52958f05064d3e1da801e07528b4c10381d9 assets/sftcore/lang/en_us.json
 eb2522f1b05c40b9b02586eb467bb6e5ab73db96 assets/sftcore/models/block/machine/certus_quartz_charger.json
 7b4609460a701619cfe37b675cce18f947557c1c assets/sftcore/models/block/machine/chemical_factory.json
 e5537740d51e3263f9a25f932a7fa2b806543aba assets/sftcore/models/block/machine/common_mekanism_process_factory.json
@@ -27,6 +28,7 @@ d09e0f5f23c4061e39fedf87f947d9988fb0587c assets/sftcore/models/block/machine/fis
 fb1aa1e4cd391fa8cbfd524dd19f6a12ebd16e1e assets/sftcore/models/block/machine/large_mekanism_nuclear_reactor.json
 9cd2b3403859491c605f7c589e8df92a2778255c assets/sftcore/models/block/machine/mega_alloy_blast_smelter.json
 8fe38b6601b9bbacaf64c8a06e0c19af4c814035 assets/sftcore/models/block/machine/oil_drilling_rig.json
+002c9a4730df4c1effcbe933cdf4d3ba7b15d398 assets/sftcore/models/block/machine/ore_replicator.json
 e68fa5f50ac266590a5fb3b0d96aa07cd7c98ff5 assets/sftcore/models/block/machine/semiconductor_blast_furnace.json
 efe74d9ea7a51d7f35e76d4d4dd3b2e2c04a97d3 assets/sftcore/models/block/multi_functional_casing.json
 7a5b74d135eca6c5fd2549cd07b902e229b69a68 assets/sftcore/models/item/certus_quartz_charger.json
@@ -49,6 +51,7 @@ b606d9a1796ac1793dc903a34331cf7b156048e8 assets/sftcore/models/item/lv_universal
 fcc81bb8b7264c3c47edffada74a6e4398245556 assets/sftcore/models/item/multi_functional_casing.json
 e05ce2fccd453effa4b4f546a7062da784f79ab7 assets/sftcore/models/item/mv_universal_circuit.json
 e449ab571c4438b6b5e5a297e8fd9fcdd2c3a17d assets/sftcore/models/item/oil_drilling_rig.json
+ed2db5299e8beb984faa74e82d685a466034b635 assets/sftcore/models/item/ore_replicator.json
 3ed83c5edba44b34db8c34fd6da2dcb7a242dbf5 assets/sftcore/models/item/semiconductor_blast_furnace.json
 c5064b38d917ee8d5bddca37ef03dd7bfd6a6b0d assets/sftcore/models/item/uhv_universal_circuit.json
 64e9793a846cb6446824d92584ccee23ac7822c9 assets/sftcore/models/item/ulv_universal_circuit.json

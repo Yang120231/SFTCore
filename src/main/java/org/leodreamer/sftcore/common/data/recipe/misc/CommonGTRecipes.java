@@ -78,7 +78,7 @@ public class CommonGTRecipes {
 
         SFTVanillaRecipeHelper.addShapedRecipe("lv_machine_hull")
                 .pattern("   ", "ABA", "CDC")
-                .arg('A', new MaterialEntry(plate, Silver))
+                .arg('A', new MaterialEntry(plate, Nickel))
                 .arg('B', new MaterialEntry(plate, Steel))
                 .arg('C', new MaterialEntry(cableGtSingle, Tin))
                 .arg('D', GTBlocks.MACHINE_CASING_LV)
@@ -125,7 +125,7 @@ public class CommonGTRecipes {
         oilDrillingRig(provider, 1, Oil);
         oilDrillingRig(provider, 2, OilHeavy);
         oilDrillingRig(provider, 3, RawOil);
-        oilDrillingRig(provider, 3, OilLight);
+        oilDrillingRig(provider, 4, OilLight);
     }
 
     private static void oilDrillingRig(Consumer<FinishedRecipe> provider, int circuit, Material output) {

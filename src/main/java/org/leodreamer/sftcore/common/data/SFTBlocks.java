@@ -26,11 +26,13 @@ public final class SFTBlocks {
                 () -> RenderType::solid);
     }
 
-    public static BlockEntry<Block> createCasingBlock(String name,
-                                                      NonNullFunction<BlockBehaviour.Properties, Block> blockSupplier,
-                                                      ResourceLocation texture,
-                                                      NonNullSupplier<? extends Block> properties,
-                                                      Supplier<Supplier<RenderType>> type) {
+    public static BlockEntry<Block> createCasingBlock(
+            String name,
+            NonNullFunction<BlockBehaviour.Properties, Block> blockSupplier,
+            ResourceLocation texture,
+            NonNullSupplier<? extends Block> properties,
+            Supplier<Supplier<RenderType>> type
+    ) {
         return REGISTRATE.block(name, blockSupplier)
                 .initialProperties(properties)
                 .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))

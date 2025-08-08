@@ -12,10 +12,23 @@ import static org.leodreamer.sftcore.common.data.recipe.SFTRecipeModifiers.*;
 public class GTMultimachineTweaks {
 
     public static void init() {
+        ParallelHatchTweaks();
         GTMultiTweaks();
         GTPerfectTweaks();
         GCYMTweaks();
         GTMegaTweaks();
+    }
+
+    public static void ParallelHatchTweaks() {
+        for (var hatch : PARALLEL_HATCH) {
+            // modified by mixin
+            if (hatch == null) continue;
+            hatch.setTooltipBuilder(
+                    hatch.getTooltipBuilder().andThen((itemStack, components) ->
+                            components.add(Component.translatable("sftcore.machine.modified_by_sft"))
+                    )
+            );
+        }
     }
 
     public static void GTMultiTweaks() {
