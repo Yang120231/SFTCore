@@ -1,4 +1,4 @@
-package org.leodreamer.sftcore.common.utils.dump.item;
+package org.leodreamer.sftcore.common.item;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -8,6 +8,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.context.UseOnContext;
 import org.jetbrains.annotations.NotNull;
+import org.leodreamer.sftcore.common.command.dump.DumpCommand;
 
 public class SelectStickItem extends Item {
 
@@ -23,11 +24,11 @@ public class SelectStickItem extends Item {
         BlockPos pos = context.getClickedPos();
         String posStr = pos.getX() + " " + pos.getY() + " " + pos.getZ();
         if (!player.isSecondaryUseActive()) {
-            SelectedData.setSelectedPos1(player, pos);
+            DumpCommand.SelectedData.setSelectedPos1(player, pos);
             if (context.getLevel().isClientSide)
                 player.sendSystemMessage(Component.translatable("item.sftcore.dump.select_stick.first", posStr));
         } else {
-            SelectedData.setSelectedPos2(player, pos);
+            DumpCommand.SelectedData.setSelectedPos2(player, pos);
             if (context.getLevel().isClientSide)
                 player.sendSystemMessage(Component.translatable("item.sftcore.dump.select_stick.second", posStr));
         }

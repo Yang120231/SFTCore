@@ -250,6 +250,7 @@ public final class MekanismRecipes {
                 .inputItems(MekanismItems.FLUORITE_GEM)
                 .inputItems(ingot, Uranium238, 2)
                 .inputFluids(Oxygen.getFluid(200))
+                .inputFluids(SulfuricAcid.getFluid(100))
                 .duration(100)
                 .EUt(VA[MV])
                 .save(provider);
@@ -257,42 +258,48 @@ public final class MekanismRecipes {
         MEKANISM_NUCLEAR_REACTION_RECIPES.recipeBuilder(SFTCore.id("fusion"))
                 .inputFluids(GeneratorsFluids.FUSION_FUEL.getFluidStack(1))
                 .duration(4000)
-                .EUt(-128);
+                .EUt(-128)
+                .save(provider);
 
         MEKANISM_NUCLEAR_REACTION_RECIPES.recipeBuilder(SFTCore.id("fission_1"))
                 .inputFluids(EnergeticFissileFuel.getFluid(700))
                 .outputFluids(FilteredPlutonium.getFluid(1))
                 .circuitMeta(1)
                 .duration(113000)
-                .EUt(-128);
+                .EUt(-128)
+                .save(provider);
 
         MEKANISM_NUCLEAR_REACTION_RECIPES.recipeBuilder(SFTCore.id("fission_1_fast"))
                 .inputFluids(EnergeticFissileFuel.getFluid(7000))
                 .outputFluids(FilteredPlutonium.getFluid(30))
                 .circuitMeta(4)
                 .duration(9700)
-                .EUt(-128);
+                .EUt(-128)
+                .save(provider);
 
         MEKANISM_NUCLEAR_REACTION_RECIPES.recipeBuilder(SFTCore.id("fission_2"))
                 .inputFluids(EnergeticFissileFuel.getFluid(700))
                 .outputFluids(FilteredPolonium.getFluid(2))
                 .circuitMeta(1)
                 .duration(113000)
-                .EUt(-128);
+                .EUt(-128)
+                .save(provider);
 
         MEKANISM_NUCLEAR_REACTION_RECIPES.recipeBuilder(SFTCore.id("fission_2_fast"))
                 .inputFluids(EnergeticFissileFuel.getFluid(7000))
                 .outputFluids(FilteredPolonium.getFluid(30))
                 .circuitMeta(5)
                 .duration(9700)
-                .EUt(-128);
+                .EUt(-128)
+                .save(provider);
 
         MEKANISM_NUCLEAR_REACTION_RECIPES.recipeBuilder(SFTCore.id("fission_3"))
                 .inputFluids(EnergeticFissileFuel.getFluid(700))
                 .outputFluids(EnergeticFissileFuel.getFluid(500))
                 .circuitMeta(3)
                 .duration(113000)
-                .EUt(-128);
+                .EUt(-128)
+                .save(provider);
     }
 
     private static @NotNull BiConsumer<Object, Integer> bioFuel(Consumer<FinishedRecipe> provider) {

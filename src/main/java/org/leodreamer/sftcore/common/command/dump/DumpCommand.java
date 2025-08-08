@@ -1,4 +1,4 @@
-package org.leodreamer.sftcore.common.utils.dump.command;
+package org.leodreamer.sftcore.common.command.dump;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -14,14 +14,12 @@ import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 import org.leodreamer.sftcore.Config;
-import org.leodreamer.sftcore.common.utils.dump.item.SelectedData;
-import org.leodreamer.sftcore.common.utils.dump.loggers.BaseDump;
-import org.leodreamer.sftcore.common.utils.dump.loggers.BlockDump;
-import org.leodreamer.sftcore.common.utils.dump.loggers.FluidDump;
-import org.leodreamer.sftcore.common.utils.dump.loggers.ItemDump;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.leodreamer.sftcore.common.command.dump.loggers.BlockDump;
+import org.leodreamer.sftcore.common.command.dump.loggers.FluidDump;
+import org.leodreamer.sftcore.common.command.dump.loggers.IDump;
+import org.leodreamer.sftcore.common.command.dump.loggers.ItemDump;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -36,8 +34,6 @@ public class DumpCommand {
     private static final Dynamic2CommandExceptionType ERROR_AREA_TOO_LARGE =
             new Dynamic2CommandExceptionType((limit, actual) -> Component.translatable(
                     "commands.fill.toobig", limit, actual));
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(DumpCommand.class);
 
     public static void
     register(CommandDispatcher<CommandSourceStack> dispatcher) {
@@ -97,7 +93,7 @@ public class DumpCommand {
     private static String getJSONString(Mode mode) {
         Map<String, Map<String, List<String>>> res = new LinkedHashMap<>();
         // Everything in Minecraft
-        List<BaseDump> dumps = new ArrayList<>();
+        List<IDump> dumps = new ArrayList<>();
 
         if (mode == Mode.ALL || mode == Mode.BLOCK)
             dumps.add(new BlockDump());
@@ -107,7 +103,7 @@ public class DumpCommand {
             dumps.add(new FluidDump());
 
 
-        for (BaseDump dump : dumps) {
+        for (IDump dump : dumps) {
             res.put(dump.getTypeName(), dump.getIdentifierMap());
             res.put(dump.getTypeName() + "Tags", dump.getTagMap());
         }
@@ -151,6 +147,7 @@ public class DumpCommand {
         for (int x = box.minX(); x <= box.maxX(); x++) {
             for (int y = box.minY(); y <= box.maxY(); y++) {
                 for (int z = box.minZ(); z <= box.maxZ(); z++) {
+                    blocks[x - box.minX()][y - box.minY()][z - box.minZ()] = ' ';
                     Block block = stack.getLevel().getBlockState(new BlockPos(x, y, z)).getBlock();
                     String name = Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(block)).toString();
                     if (name.equals("minecraft:air")) continue;
@@ -161,11 +158,17 @@ public class DumpCommand {
             }
         }
 
+        if (aliasMap.isEmpty()) {
+            return "";
+        }
+
         StringBuilder sb = new StringBuilder();
+
         // write the map
         for (String name : aliasMap.keySet())
             sb.append(aliasMap.get(name)).append(":\"").append(name).append("\",\n");
         sb.deleteCharAt(sb.length() - 2).append("\n");
+
         // write the array
         for (int x = 0; x < box.getXSpan(); x++) {
             sb.append("[");
@@ -184,5 +187,30 @@ public class DumpCommand {
 
     private enum Mode {
         ALL, BLOCK, ITEM, FLUID
+    }
+
+    public static class SelectedData {
+        private static final Map<String, SelectedArea> AREA_MAP = new HashMap<>();
+
+        public static void setSelectedPos1(@NotNull Player player, BlockPos pos) {
+            if (!AREA_MAP.containsKey(player.getStringUUID()))
+                AREA_MAP.put(player.getStringUUID(), new SelectedArea());
+            AREA_MAP.get(player.getStringUUID()).pos1 = pos;
+        }
+
+        public static void setSelectedPos2(@NotNull Player player, BlockPos pos) {
+            if (!AREA_MAP.containsKey(player.getStringUUID()))
+                AREA_MAP.put(player.getStringUUID(), new SelectedArea());
+            AREA_MAP.get(player.getStringUUID()).pos2 = pos;
+        }
+
+        public static SelectedArea getSelectedArea(@NotNull Player player) {
+            return AREA_MAP.get(player.getStringUUID());
+        }
+
+        public static final class SelectedArea {
+            public BlockPos pos1;
+            public BlockPos pos2;
+        }
     }
 }

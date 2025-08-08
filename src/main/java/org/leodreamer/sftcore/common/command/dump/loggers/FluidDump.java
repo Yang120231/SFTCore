@@ -1,11 +1,11 @@
-package org.leodreamer.sftcore.common.utils.dump.loggers;
+package org.leodreamer.sftcore.common.command.dump.loggers;
 
 import net.minecraft.tags.TagKey;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.*;
 
-public class FluidDump implements BaseDump {
+public class FluidDump implements IDump {
     @Override
     public String getTypeName() {
         return "Fluid";
@@ -13,28 +13,28 @@ public class FluidDump implements BaseDump {
 
     @Override
     public Map<String, List<String>> getIdentifierMap() {
-        Map<String, List<String>> id_map = new HashMap<>();
+        Map<String, List<String>> idMap = new HashMap<>();
         ForgeRegistries.FLUIDS.getKeys()
                 .forEach(location -> {
                     String namespace = location.getNamespace();
-                    if (!id_map.containsKey(namespace))
-                        id_map.put(namespace, new LinkedList<>());
-                    id_map.get(namespace).add(location.getPath());
+                    if (!idMap.containsKey(namespace))
+                        idMap.put(namespace, new LinkedList<>());
+                    idMap.get(namespace).add(location.getPath());
                 });
-        return id_map;
+        return idMap;
     }
 
     @Override
     public Map<String, List<String>> getTagMap() {
-        Map<String, List<String>> tag_map = new HashMap<>();
+        Map<String, List<String>> tagMap = new HashMap<>();
         Objects.requireNonNull(ForgeRegistries.FLUIDS.tags()).getTagNames()
                 .map(TagKey::location)
                 .forEach(location -> {
                     String namespace = "#" + location.getNamespace();
-                    if (!tag_map.containsKey(namespace))
-                        tag_map.put(namespace, new LinkedList<>());
-                    tag_map.get(namespace).add(location.getPath());
+                    if (!tagMap.containsKey(namespace))
+                        tagMap.put(namespace, new LinkedList<>());
+                    tagMap.get(namespace).add(location.getPath());
                 });
-        return tag_map;
+        return tagMap;
     }
 }

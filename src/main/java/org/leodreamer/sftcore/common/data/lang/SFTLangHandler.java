@@ -38,6 +38,14 @@ public class SFTLangHandler extends LangHandler {
 
         //// tooltips by SFT ////
 
+        // commands
+        provider.add("item.sftcore.dump.select_stick.first", "Select the first point at %s");
+        provider.add("item.sftcore.dump.select_stick.second", "Select the second point at %s");
+        provider.add("commands.sftcore.dump.start", "Start dumping...");
+        provider.add("commands.sftcore.dump.success", "Dump finished.");
+        provider.add("commands.sftcore.dump.success.link", "[Open the file]");
+        provider.add("commands.sftcore.dump.failure", "Dump failed.");
+
         // recipe modifiers
         provider.add("sftcore.multiblock.half_perfect_overclock.tooltip", "§do §lHalf Perfect Overclock§r");
         provider.add("sftcore.multiblock.half_perfect_overclock.tooltip.1", "§7§o   Process 3 times faster when overclocked with 4 times power§r");

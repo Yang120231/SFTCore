@@ -4,10 +4,16 @@ import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import net.minecraft.world.item.Item;
+import org.leodreamer.sftcore.common.item.SelectStickItem;
 
 import static org.leodreamer.sftcore.SFTCore.REGISTRATE;
 
 public final class SFTItems {
+
+    public static final ItemEntry<SelectStickItem> SELECT_STICK =
+            REGISTRATE.item("select_stick", (p) -> new SelectStickItem())
+                    .lang("Select Stick")
+                    .register();
 
     public static final ItemEntry<Item> UU_MATTER =
             REGISTRATE.item("uu_matter", Item::new).lang("UU Matter").register();
